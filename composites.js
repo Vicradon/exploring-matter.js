@@ -3,19 +3,20 @@ const $$ = n => document.querySelectorAll(n);
 
 $$('button').forEach(button => button.addEventListener('click', event => {
   event.preventDefault();
-}))
+}));
+
+$('#reload').onclick = () => location.reload();
 
 $('#set-x-gravity').onclick = () => {
-  if ($('#x-gravity')){
+  if ($('#x-gravity')) {
     car1.parent.gravity.x = $('#x-gravity').value;
   }
 }
 $('#set-y-gravity').onclick = () => {
-  if ($('#y-gravity')){
+  if ($('#y-gravity')) {
     car1.parent.gravity.y = $('#y-gravity').value;
   }
 }
-
 
 
 /* BASIC SETUP */
@@ -28,7 +29,7 @@ const render = Render.create({
   options: {
     wireframes: false,
     background: "#222",
-    showAngleIndicator:true
+    showAngleIndicator: true
   }
 });
 
@@ -41,7 +42,7 @@ const mouseConstraint = MouseConstraint.create(engine, {
     render: { visible: false }
   }
 });
-let ground = Bodies.rectangle(innerWidth / 2, innerHeight+50, innerWidth+10000, 300, { isStatic: true });
+let ground = Bodies.rectangle(innerWidth / 2, innerHeight + 50, innerWidth + 10000, 300, { isStatic: true });
 World.add(world, [mouseConstraint, ground]);
 
 /* MAIN CODE */
@@ -57,7 +58,15 @@ World.add(world, [mouseConstraint, ground]);
 let group = Body.nextGroup(true);
 let car1 = Composites.car(400, 300, 170, 50, 40);
 let car2 = Composites.car(700, 300, 170, 50, 40);
-var ropeA = Composites.stack(200, 50, 8, 1, 10, 10, function(x, y) {
+
+let x = 250, y = 200;
+function addCar() {
+  World.add(world, Composites.car(x, y, 170, 50, 40));
+  x += 10; y += 10;
+}
+$("#addCar").onclick = addCar;
+
+var ropeA = Composites.stack(200, 50, 8, 1, 10, 10, function (x, y) {
   return Bodies.rectangle(x, y, 50, 20, { collisionFilter: { group: group } });
 });
 Composite.add(ropeA, Constraint.create({
