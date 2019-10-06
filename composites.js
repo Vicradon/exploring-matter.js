@@ -1,5 +1,3 @@
-import noUiSlider from "nouislider";
-
 const $ = n => document.querySelector(n);
 const $$ = n => document.querySelectorAll(n);
 
@@ -17,16 +15,6 @@ $('#set-y-gravity').onclick = () => {
     car1.parent.gravity.y = $('#y-gravity').value;
   }
 }
-var slider = document.getElementById('slider');
-
-noUiSlider.create(slider, {
-    start: [20, 80],
-    connect: true,
-    range: {
-        'min': 0,
-        'max': 100
-    }
-});
 
 
 
