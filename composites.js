@@ -59,10 +59,8 @@ let group = Body.nextGroup(true);
 let car1 = Composites.car(400, 300, 170, 50, 40);
 let car2 = Composites.car(700, 300, 170, 50, 40);
 
-let x = 250, y = 200;
 function addCar() {
-  World.add(world, Composites.car(x, y, 170, 50, 40));
-  x += 10; y += 10;
+  World.add(world, Composites.car(350, 200, 170, 50, 40));
 }
 $("#addCar").onclick = addCar;
 
